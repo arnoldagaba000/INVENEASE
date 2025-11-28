@@ -1,0 +1,232 @@
+import { revalidateLogic, useForm } from "@tanstack/react-form";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
+import { registerSchema } from "@/lib/schemas/authSchema";
+import { Button } from "../ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "../ui/card";
+import {
+    Field,
+    FieldDescription,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    FieldSeparator,
+} from "../ui/field";
+import { Input } from "../ui/input";
+import GoogleIcon from "./GoogleIcon";
+
+const RegisterPage = () => {
+    const navigate = useNavigate();
+
+    const form = useForm({
+        defaultValues: { name: "", email: "", password: "" },
+        onSubmit: async ({ value }) => {
+            await authClient.signUp.email(
+                {
+                    name: value.name,
+                    email: value.email,
+                    password: value.password,
+                },
+                {
+                    onSuccess: (ctx) => {
+                        toast.success(`Welcome back, ${ctx.data.user.name}!`);
+                        navigate({ to: "/dashboard", replace: true });
+                    },
+                    onError: (ctx) => {
+                        toast.error(`Login error: ${ctx.error.message}`);
+                    },
+                }
+            );
+        },
+        validators: { onSubmit: registerSchema },
+        validationLogic: revalidateLogic({
+            mode: "submit",
+            modeAfterSubmission: "change",
+        }),
+    });
+
+    const handleGoogleSignIn = () => {
+        authClient.signIn.social({
+            provider: "google",
+            callbackURL: `${window.location.origin}/dashboard`,
+        });
+    };
+
+    return (
+        <div className="items-center-safe justify-center-safe flex flex-col gap-6 p-4 sm:p-8 md:p-12 lg:p-16">
+            <Card className="w-full max-w-md">
+                <CardHeader className="text-center">
+                    <CardTitle className="text-xl">
+                        Create your account
+                    </CardTitle>
+                    <CardDescription>
+                        Fill in the form below to create your account
+                    </CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            form.handleSubmit();
+                        }}
+                    >
+                        <FieldGroup>
+                            <form.Field name="name">
+                                {(field) => {
+                                    const isInvalid =
+                                        field.state.meta.isTouched &&
+                                        !field.state.meta.isValid;
+
+                                    return (
+                                        <Field data-invalid={isInvalid}>
+                                            <FieldLabel htmlFor={field.name}>
+                                                Full Name
+                                            </FieldLabel>
+                                            <Input
+                                                id={field.name}
+                                                name={field.name}
+                                                onBlur={field.handleBlur}
+                                                onChange={(e) =>
+                                                    field.handleChange(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                placeholder="Enter your name"
+                                                type="text"
+                                                value={field.state.value}
+                                            />
+                                            {isInvalid && (
+                                                <FieldError
+                                                    errors={
+                                                        field.state.meta.errors
+                                                    }
+                                                />
+                                            )}
+                                        </Field>
+                                    );
+                                }}
+                            </form.Field>
+
+                            <form.Field name="email">
+                                {(field) => {
+                                    const isInvalid =
+                                        field.state.meta.isTouched &&
+                                        !field.state.meta.isValid;
+
+                                    return (
+                                        <Field data-invalid={isInvalid}>
+                                            <FieldLabel htmlFor={field.name}>
+                                                Email Address
+                                            </FieldLabel>
+                                            <Input
+                                                id={field.name}
+                                                name={field.name}
+                                                onBlur={field.handleBlur}
+                                                onChange={(e) =>
+                                                    field.handleChange(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                placeholder="Enter your email"
+                                                type="email"
+                                                value={field.state.value}
+                                            />
+                                            {isInvalid && (
+                                                <FieldError
+                                                    errors={
+                                                        field.state.meta.errors
+                                                    }
+                                                />
+                                            )}
+                                        </Field>
+                                    );
+                                }}
+                            </form.Field>
+
+                            <form.Field name="password">
+                                {(field) => {
+                                    const isInvalid =
+                                        field.state.meta.isTouched &&
+                                        !field.state.meta.isValid;
+
+                                    return (
+                                        <Field data-invalid={isInvalid}>
+                                            <FieldLabel htmlFor={field.name}>
+                                                Password
+                                            </FieldLabel>
+                                            <Input
+                                                id={field.name}
+                                                name={field.name}
+                                                onBlur={field.handleBlur}
+                                                onChange={(e) =>
+                                                    field.handleChange(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                placeholder="Enter your password"
+                                                type="password"
+                                                value={field.state.value}
+                                            />
+                                            {isInvalid && (
+                                                <FieldError
+                                                    errors={
+                                                        field.state.meta.errors
+                                                    }
+                                                />
+                                            )}
+                                        </Field>
+                                    );
+                                }}
+                            </form.Field>
+
+                            <form.Subscribe>
+                                {(state) => (
+                                    <Field>
+                                        <Button
+                                            disabled={state.isSubmitting}
+                                            type="submit"
+                                        >
+                                            {state.isSubmitting
+                                                ? "Signing up..."
+                                                : "Sign up"}
+                                        </Button>
+                                    </Field>
+                                )}
+                            </form.Subscribe>
+
+                            <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
+                                Or continue with
+                            </FieldSeparator>
+
+                            <Field>
+                                <Button
+                                    onClick={() => handleGoogleSignIn()}
+                                    type="button"
+                                >
+                                    <GoogleIcon />
+                                    Sign up with Google
+                                </Button>
+                            </Field>
+
+                            <FieldDescription className="text-center">
+                                Already have an account?{" "}
+                                <Link to="/login">Sign in</Link>
+                            </FieldDescription>
+                        </FieldGroup>
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
+    );
+};
+
+export default RegisterPage;

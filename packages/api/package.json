@@ -17,14 +17,14 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@orpc/server": "catalog:",
+    "@INVENEASE/auth": "workspace:*",
+    "@INVENEASE/db": "workspace:*",
     "@orpc/client": "catalog:",
     "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
     "@orpc/zod": "catalog:",
-    "hono": "catalog:",
     "dotenv": "catalog:",
-    "zod": "^4.1.11",
-    "@INVENEASE/auth": "workspace:*",
-    "@INVENEASE/db": "workspace:*"
+    "hono": "catalog:",
+    "zod": "^4.1.13"
   }
 }

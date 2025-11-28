@@ -1,11 +1,8 @@
 {
-  "name": "@INVENEASE/auth",
+  "name": "@INVENEASE/env",
   "exports": {
     ".": {
       "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
     }
   },
   "type": "module",
@@ -17,10 +14,7 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@INVENEASE/db": "workspace:*",
-    "@INVENEASE/env": "workspace:*",
-    "better-auth": "catalog:",
     "dotenv": "catalog:",
-    "zod": "^4.1.13"
+    "zod": "catalog:"
   }
 }

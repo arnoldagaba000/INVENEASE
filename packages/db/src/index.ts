@@ -1,13 +1,14 @@
-import { PrismaClient } from "../prisma/generated/client";
-import { PrismaNeon } from "@prisma/adapter-neon";
+import { env } from "@INVENEASE/env";
 import { neonConfig } from "@neondatabase/serverless";
+import { PrismaNeon } from "@prisma/adapter-neon";
 import ws from "ws";
+import { PrismaClient } from "../prisma/generated/client";
 
 neonConfig.webSocketConstructor = ws;
 neonConfig.poolQueryViaFetch = true;
 
 const adapter = new PrismaNeon({
-	connectionString: process.env.DATABASE_URL || "",
+    connectionString: env.DATABASE_URL,
 });
 
 const prisma = new PrismaClient({ adapter });
