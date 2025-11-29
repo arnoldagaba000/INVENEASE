@@ -11,8 +11,8 @@ import {
     SidebarMenuItem,
     SidebarRail,
 } from "../ui/sidebar";
-import NavMain from "./NavMain";
-import NavUser from "./NavUser";
+import NavMain from "./nav-main";
+import NavUser from "./nav-user";
 
 const AppSidebar = () => {
     const session = authClient.useSession();

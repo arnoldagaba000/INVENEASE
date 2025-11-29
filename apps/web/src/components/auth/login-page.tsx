@@ -2,7 +2,7 @@ import { revalidateLogic, useForm } from "@tanstack/react-form";
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
-import { loginSchema } from "@/lib/schemas/authSchema";
+import { loginSchema } from "@/lib/schemas/auth-schema";
 import { Button } from "../ui/button";
 import {
     Card,
@@ -21,7 +21,7 @@ import {
     FieldSeparator,
 } from "../ui/field";
 import { Input } from "../ui/input";
-import GoogleIcon from "./GoogleIcon";
+import GoogleIcon from "./google-icon";
 
 const LoginPage = () => {
     const navigate = useNavigate();

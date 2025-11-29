@@ -2,7 +2,7 @@ import { revalidateLogic, useForm } from "@tanstack/react-form";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
-import { registerSchema } from "@/lib/schemas/authSchema";
+import { registerSchema } from "@/lib/schemas/auth-schema";
 import { Button } from "../ui/button";
 import {
     Card,
@@ -20,7 +20,7 @@ import {
     FieldSeparator,
 } from "../ui/field";
 import { Input } from "../ui/input";
-import GoogleIcon from "./GoogleIcon";
+import GoogleIcon from "./google-icon";
 
 const RegisterPage = () => {
     const navigate = useNavigate();
