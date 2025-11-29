@@ -1,14 +1,14 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import Header from "@/components/nav/Header";
+import Sidebar from "@/components/nav/Sidebar";
 import { authClient } from "@/lib/auth-client";
 
 export const Route = createFileRoute("/_protected")({
-    beforeLoad: async ({location}) => {
+    beforeLoad: async ({ location }) => {
         const session = await authClient.getSession();
         if (!session.data) {
             throw redirect({
                 to: "/login",
-                search: { redirect: location.href }
+                search: { redirect: location.href },
             });
         }
         return session;
@@ -18,9 +18,8 @@ export const Route = createFileRoute("/_protected")({
 
 function RouteComponent() {
     return (
-        <>
-            <Header />
+        <Sidebar>
             <Outlet />
-        </>
+        </Sidebar>
     );
 }

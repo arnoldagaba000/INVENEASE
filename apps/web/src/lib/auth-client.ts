@@ -6,3 +6,6 @@ export const authClient = createAuthClient({
     baseURL: import.meta.env.VITE_SERVER_URL,
     plugins: [inferAdditionalFields<typeof auth>()],
 });
+
+export type Session = typeof auth.$Infer.Session.session;
+export type User = typeof auth.$Infer.Session.user;
