@@ -1,5 +1,5 @@
 import { revalidateLogic, useForm } from "@tanstack/react-form";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 import { loginSchema } from "@/lib/schemas/authSchema";
@@ -25,6 +25,7 @@ import GoogleIcon from "./GoogleIcon";
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const search = useSearch({ from: "/_auth/login" });
 
     const form = useForm({
         defaultValues: { email: "", password: "", rememberMe: false },
@@ -38,7 +39,10 @@ const LoginPage = () => {
                 {
                     onSuccess: (ctx) => {
                         toast.success(`Welcome back, ${ctx.data.user.name}!`);
-                        navigate({ to: "/dashboard", replace: true });
+                        navigate({
+                            to: search.redirect ?? "/dashboard",
+                            replace: true,
+                        });
                     },
                     onError: (ctx) => {
                         toast.error(`${ctx.error.message}`);

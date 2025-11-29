@@ -36,7 +36,7 @@ const RegisterPage = () => {
                 },
                 {
                     onSuccess: (ctx) => {
-                        toast.success(`Welcome back, ${ctx.data.user.name}!`);
+                        toast.success(`Welcome, ${ctx.data.user.name}!`);
                         navigate({ to: "/dashboard", replace: true });
                     },
                     onError: (ctx) => {

@@ -51,23 +51,23 @@ function RootComponent() {
                 <div className="h-svh bg-background">
                     <Outlet />
                 </div>
-                <Toaster richColors />
+                <Toaster position="top-right" richColors />
             </ThemeProvider>
             {import.meta.env.DEV && (
                 <TanStackDevtools
-                        plugins={[
-                            {
-                                name: "TanStack Query",
-                                render: <ReactQueryDevtoolsPanel />,
-                                defaultOpen: true,
-                            },
-                            {
-                                name: "TanStack Router",
-                                render: <TanStackRouterDevtoolsPanel />,
-                                defaultOpen: false,
-                            },
-                        ]}
-                    />
+                    plugins={[
+                        {
+                            name: "TanStack Query",
+                            render: <ReactQueryDevtoolsPanel />,
+                            defaultOpen: true,
+                        },
+                        {
+                            name: "TanStack Router",
+                            render: <TanStackRouterDevtoolsPanel />,
+                            defaultOpen: false,
+                        },
+                    ]}
+                />
             )}
         </>
     );

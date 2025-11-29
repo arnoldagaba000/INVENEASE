@@ -64,6 +64,7 @@
         "@tanstack/react-form": "^1.26.0",
         "@tanstack/react-query": "^5.90.11",
         "@tanstack/react-router": "^1.139.10",
+        "@tanstack/zod-adapter": "^1.139.10",
         "better-auth": "catalog:",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -3586,6 +3587,18 @@
       "",
       {},
       "sha512-9PImF1d1tovTUIpjFVa0W7Fwj/MHif7BaaczgJJfbv3sDt1Gh+oW9W9uCw9M3ndEJynnp5ZD/TTs0RGubH5ssg=="
+    ],
+
+    "@tanstack/zod-adapter": [
+      "@tanstack/zod-adapter@1.139.10",
+      "",
+      {
+        "peerDependencies": {
+          "@tanstack/react-router": ">=1.43.2",
+          "zod": "^3.23.8"
+        }
+      },
+      "sha512-6uJnt8icU6P1Yg8oqt/4NDe674/s8q5vJtU7r945vQRiRiD4ovxs02FpG7/OOicL11gYOeJlBfOSeVkz/Do/1g=="
     ],
 
     "@trpc/server": [
