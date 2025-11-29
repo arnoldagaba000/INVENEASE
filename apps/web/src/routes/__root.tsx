@@ -1,14 +1,15 @@
 import type { QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import {
     createRootRouteWithContext,
     HeadContent,
     Outlet,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "@/components/ui/sonner";
 import type { orpc } from "@/utils/orpc";
 import "../index.css";
+import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ThemeProvider } from "next-themes";
 
 export type RouterAppContext = {
@@ -53,13 +54,20 @@ function RootComponent() {
                 <Toaster richColors />
             </ThemeProvider>
             {import.meta.env.DEV && (
-                <>
-                    <TanStackRouterDevtools position="bottom-left" />
-                    <ReactQueryDevtools
-                        buttonPosition="bottom-right"
-                        position="bottom"
+                <TanStackDevtools
+                        plugins={[
+                            {
+                                name: "TanStack Query",
+                                render: <ReactQueryDevtoolsPanel />,
+                                defaultOpen: true,
+                            },
+                            {
+                                name: "TanStack Router",
+                                render: <TanStackRouterDevtoolsPanel />,
+                                defaultOpen: false,
+                            },
+                        ]}
                     />
-                </>
             )}
         </>
     );
