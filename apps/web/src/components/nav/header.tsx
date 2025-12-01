@@ -1,6 +1,6 @@
-import { Breadcrumb } from "../ui/breadcrumb";
 import { Separator } from "../ui/separator";
 import { SidebarTrigger } from "../ui/sidebar";
+import RouteBreadcrumb from "./route-breadcrumb";
 
 const Header = () => (
     <header className="items-center-safe flex h-16 shrink-0 border-b px-4">
@@ -11,7 +11,7 @@ const Header = () => (
                 orientation="vertical"
             />
 
-            <Breadcrumb />
+            <RouteBreadcrumb />
         </div>
     </header>
 );
