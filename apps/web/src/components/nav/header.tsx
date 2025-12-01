@@ -1,17 +1,21 @@
 import { Separator } from "../ui/separator";
 import { SidebarTrigger } from "../ui/sidebar";
+import ModeToggler from "./mode-toggler";
 import RouteBreadcrumb from "./route-breadcrumb";
 
 const Header = () => (
-    <header className="items-center-safe flex h-16 shrink-0 border-b px-4">
+    <header className="items-center-safe flex h-16 shrink-0 justify-between border-b px-4">
         <div className="items-center-safe flex gap-2">
             <SidebarTrigger className="-ml-1" />
             <Separator
                 className="mr-2 data-[orientation=vertical]:h-4"
                 orientation="vertical"
             />
-
             <RouteBreadcrumb />
+        </div>
+
+        <div className="items-center-safe flex">
+            <ModeToggler />
         </div>
     </header>
 );
