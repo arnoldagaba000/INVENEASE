@@ -21,3 +21,9 @@ export const registerSchema = z.object({
     password: passwordSchema,
 });
 export type RegisterInput = z.infer<typeof registerSchema>;
+
+export const updateProflieSchema = z.object({
+    name: z.string().trim().min(1, { message: "Name is required" }),
+    image: z.string()
+});
+export type UpdateProfileInput = z.infer<typeof updateProflieSchema>;
