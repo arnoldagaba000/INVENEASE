@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import PasswordResetForm from "@/components/profile/password-reset-form";
 import ProfileDetailsForm from "@/components/profile/profile-details-form";
 import { authClient } from "@/lib/auth-client";
 
@@ -25,6 +26,7 @@ function Profile() {
 
             <div className="flex flex-col gap-6 lg:flex-row">
                 <ProfileDetailsForm user={user} />
+                <PasswordResetForm />
             </div>
         </div>
     );
