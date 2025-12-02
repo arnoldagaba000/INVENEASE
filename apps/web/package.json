@@ -11,12 +11,12 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@INVENEASE/api": "workspace:*",
     "@INVENEASE/auth": "workspace:*",
-    "@hookform/resolvers": "^5.2.2",
     "@orpc/client": "catalog:",
     "@orpc/server": "catalog:",
-    "@orpc/tanstack-query": "^1.12.1",
+    "@orpc/tanstack-query": "^1.12.2",
     "@prisma/client": "catalog:",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-checkbox": "^1.3.3",
@@ -29,7 +29,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "@tanstack/devtools-vite": "^0.3.11",
     "@tanstack/react-devtools": "^0.8.2",
-    "@tanstack/react-form": "^1.26.0",
+    "@tanstack/react-form": "^1.27.0",
     "@tanstack/react-query": "^5.90.11",
     "@tanstack/react-router": "^1.139.12",
     "@tanstack/zod-adapter": "^1.139.12",
